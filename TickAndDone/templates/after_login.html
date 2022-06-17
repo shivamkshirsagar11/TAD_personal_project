@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Google Registration</title>
+   </head>
+   <body>
+      <h1>Great logged in! :-)</h1>
+      <h2>Name: {{name}}</h2><hr>
+      <h2>Email: {{email}}</h2><hr>
+      {% comment %} <a href="http://127.0.0.1:8000/accounts/logout/">Logout</a> {% endcomment %}
+      <button onclick="forwardToLogOut()">Logout</button>
+      <script>
+         function forwardToLogOut(){
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/accounts/logout/";
+            var element1 = document.createElement("INPUT");         
+            element1.name="csrfmiddlewaretoken";
+            element1.value="{{ csrf_token }}";
+            element1.type = 'hidden'
+            form.appendChild(element1);
+            document.body.appendChild(form);
+            form.submit();
+         }
+      </script>
+   </body>
+</html>
